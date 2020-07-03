@@ -83,22 +83,22 @@ export default new Vuex.Store({
       commit('setDbs', await server.queryDbs());
       commit('resetDb')
     },
-    async deleteDb({ dispatch }, id) {
-      await server.deleteDb(id)
+    async deleteDb({ dispatch }, db) {
+      await server.deleteDb(db.name)
       await dispatch('queryDbs')
     },
-    async queryTables({ commit }, id) {
-      commit('setTables', await server.queryTables(id));
+    async queryTables({ commit }, name) {
+      commit('setTables', await server.queryTables(name));
     },
     async deleteTable({ dispatch, state }, row) {
       await server.deleteTable(row.db, row.name)
-      dispatch('queryTables', state.currentDb.id)
+      dispatch('queryTables', state.currentDb.name)
     },
 
     async chooseDb({ commit, dispatch }, db) {
       commit('setCurrentDb', db)
       commit('setCurrentTable', {})
-      await dispatch("queryTables", db.id);
+      await dispatch("queryTables", db.name);
     },
     async chooseTable({ commit }, table) {
       commit('setCurrentTable', table)

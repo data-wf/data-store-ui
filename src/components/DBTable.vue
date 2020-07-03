@@ -9,7 +9,7 @@
         </template>
         <template slot-scope="{ row }" slot="action">
           <Button type="primary" size="small" style="margin-right: 5px" @click="chooseDb(row)">查看表</Button>
-          <Button type="primary" size="small" style="margin-right: 5px" @click="deleteDb(row.id)">删除</Button>
+          <Button type="primary" size="small" style="margin-right: 5px" @click="deleteDb(row)">删除</Button>
         </template>
       </Table>
     </div>
